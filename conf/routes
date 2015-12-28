@@ -87,9 +87,7 @@ GET /expedients/:codeExp/marks	 controllers.Qualifications.getMarks(codeExp : St
 # Home page
 GET     /                           controllers.Application.index()
 
-GET		/login						controllers.Application.login()
-
-POST	/login						controllers.Application.authenticate()
+POST	/login						controllers.Application.login()
 
 GET 	/logout						controllers.Application.logout()						
 

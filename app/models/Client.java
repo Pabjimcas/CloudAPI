@@ -42,7 +42,7 @@ public class Client extends Person{
 		return res;
 	}
 	
-	public static void page(ExpressionList<Client> clients,String limit,String page){
+	public static List<Client> page(ExpressionList<Client> clients,String limit,String page){
 		Integer limitNumber = new Integer(limit);
 		Integer pageNumber = new Integer(page);
 		if(limitNumber < 1){
@@ -51,7 +51,7 @@ public class Client extends Person{
 		if(pageNumber < 1){
 			pageNumber = 1;
 		}
-		clients.setMaxRows(limitNumber).setFirstRow(limitNumber*(pageNumber-1));
+		return clients.setMaxRows(limitNumber).setFirstRow(limitNumber*(pageNumber-1)).findList();
 	}
 	
 	public static void orderBy(ExpressionList<Client> clients,Map<String,String> orders){

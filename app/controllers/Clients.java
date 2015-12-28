@@ -166,9 +166,7 @@ public class Clients extends Controller{
 			page = "1";
 		}
 
-		Client.page(clients,limit,page);
-		
-		List<Client> listClients = clients.findList();
+		List<Client> listClients = Client.page(clients,limit,page);
 		if(listClients.size() == 0){
 			return badRequest("No se han encontrado resultados en la búsqueda");
 		}else{

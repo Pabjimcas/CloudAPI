@@ -24,7 +24,7 @@ create table expedient (
   id                            bigint not null,
   client_exp_id                 bigint,
   code                          varchar(255),
-  mark                          float,
+  average_mark                  float,
   version                       bigint not null,
   when_created                  timestamp not null,
   when_updated                  timestamp not null,

@@ -12,15 +12,6 @@ import play.data.Form;
 public class Application extends Controller {
 
     public Result index() {
-    	if(session("conectado") != null){
-    		return ok("M k");
-    	}else{
-    		return redirect(
-                    routes.Application.login()
-    	            );
-    	}
-    }
-    public Result login(){
     	Form<User> userForm = Form.form(User.class);
     	return ok(views.html.login.render(userForm));
     }
@@ -33,7 +24,7 @@ public class Application extends Controller {
     	return ok("Desconectado");
     }
     
-    public Result authenticate(){
+    public Result login(){
     	Form<User> form = Form.form(User.class).bindFromRequest();
     	if (form.hasErrors()) {
     		return badRequest(ControllerHelper.errorJson(2, "Datos incorrectos", form.errorsAsJson()));

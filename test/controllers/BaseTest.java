@@ -13,7 +13,6 @@ import models.User;
 import play.libs.Json;
 import play.mvc.Result;
 import play.mvc.Http.RequestBuilder;
-import play.test.Helpers;
 
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.node.ObjectNode;
