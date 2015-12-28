@@ -1,0 +1,7 @@
+@(plots: List[Plot],count: Integer)
+<plots>
+	<count>@count</count>
+	@for(plot <- plots){
+		@plotView(plot)
+	}
+</plots>

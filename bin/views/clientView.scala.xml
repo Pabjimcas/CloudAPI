@@ -1,0 +1,14 @@
+@(client: Client)
+<client id="@client.id">
+	<nif>@client.nif</nif>
+	<name>@client.name</name>
+	@if(client.lastname){<lastname>@client.lastname</lastname>}
+	<phone>@client.phone</phone>
+	<city>@client.city</city>
+	@if(client.address){<address>@client.address</address>}
+	<expedients>
+		@for(exp <- client.expedients){
+			@expedientView(exp,true)
+		}
+	</expedients>
+</client>

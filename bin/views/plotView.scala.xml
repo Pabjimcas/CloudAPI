@@ -1,0 +1,7 @@
+@(plot: Plot)
+<plot id="@plot.id">
+	<enclosure>@plot.enclosure</enclosure>
+	<surface>@plot.surface</surface>
+	<product>@plot.product</product>
+	@if(plot.harvest != null){<harvest>@plot.harvest</harvest>}
+</plot>

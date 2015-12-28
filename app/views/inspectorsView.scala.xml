@@ -1,0 +1,7 @@
+@(inspectors: List[Inspector],count: Integer)
+<inspectors>
+	<count>@count</count>
+	@for(inspector <- inspectors){
+		@inspectorView(inspector,true)
+	}
+</inspectors>

@@ -1,0 +1,7 @@
+@(expedients: List[Expedient],count: Integer)
+<expedients>
+	<count>@count</count>
+	@for(expedient <- expedients){
+		@expedientView(expedient,true)
+	}
+</expedients>

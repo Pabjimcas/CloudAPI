@@ -1,0 +1,8 @@
+@(expedient: Expedient, isList: Boolean)
+<expedient id="@expedient.id">
+	<code>@expedient.code</code>
+	@if(!isList){
+	<qualifications></qualifications>
+	<inspectors></inspectors>
+	}
+</expedient>

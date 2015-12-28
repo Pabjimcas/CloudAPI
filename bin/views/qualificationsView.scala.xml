@@ -1,0 +1,7 @@
+@(qualifications: List[Qualification],count: Integer)
+<qualifications>
+	<count>@count</count>
+	@for(qualification <- qualifications){
+		@qualificationView(qualification)
+	}
+</qualifications>

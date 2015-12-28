@@ -1,0 +1,98 @@
+# Routes
+# This file defines all application routes (Higher priority routes first)
+# ~~~~
+
+#Clientes
+
+#Cualquiera crea cliente
+POST /newClient  controllers.Clients.newClient()  
+
+#Sólo el cliente y inspectores vinculados
+GET /client controllers.Clients.getClient()
+
+#Sólo el cliente
+PUT /client controllers.Clients.clientUpdate()
+
+#Sólo el cliente
+DELETE /client controllers.Clients.removeClient()
+
+#Todos
+GET /clients controllers.Clients.getClients()
+
+# Inspectores
+
+#Cualquiera crea inspector que posea código 
+POST /newInspector controllers.Inspectors.newInspector()
+
+#Sólo el inspector
+GET /inspector controllers.Inspectors.getInspector()
+
+#Sólo el inspector
+PUT /inspector controllers.Inspectors.inspectorUpdate()
+
+#Sólo el inspector
+DELETE /inspector controllers.Inspectors.removeInspector()
+
+#Sólo el inspector
+GET  /inspectors controllers.Inspectors.getInspectors()
+
+GET /inspector/expedients	 controllers.Inspectors.getInspectorExpedients()
+
+# Expedientes
+
+#Sólo el cliente
+POST /newExpedient  controllers.Expedients.newExpedient()
+
+#Cliente y sus inspectores
+GET /expedients/:codeExp controllers.Expedients.getExpedient(codeExp : String)
+
+#Sólo inspector
+PUT /expedients/:codeExp controllers.Expedients.expedientUpdate(codeExp : String)
+
+#Sólo cliente
+DELETE /expedients/:codeExp controllers.Expedients.removeExpedient(codeExp : String)
+
+GET /expedients controllers.Expedients.getExpedients()
+
+# Parcelas
+
+#Sólo el cliente
+POST /expedients/:codeExp/newPlot controllers.Plots.newPlot(codeExp : String)
+
+#Cliente y inspectores vinculados al expediente
+GET /expedients/:codeExp/plots/:enc controllers.Plots.getPlot(codeExp : String,enc : Integer)
+
+#Sólo el cliente
+PUT /expedients/:codeExp/plots/:enc controllers.Plots.plotUpdate(codeExp : String,enc : Integer)
+
+#Sólo el cliente
+DELETE /expedients/:codeExp/plots/:enc controllers.Plots.removePlot(codeExp : String,enc : Integer)
+
+#Cliente e inspectores vinculados
+GET /expedients/:codeExp/plots controllers.Plots.getPlots(codeExp : String)
+
+# Calificación
+
+POST /expedients/:codeExp/newMark controllers.Qualifications.newMark(codeExp : String)
+
+GET /expedients/:codeExp/marks/$id<[0-9]*>	 controllers.Qualifications.getMark(codeExp : String,id : Long)
+
+PUT /expedients/:codeExp/marks/$id<[0-9]*>	 controllers.Qualifications.markUpdate(codeExp : String,id : Long)
+
+DELETE /expedients/:codeExp/marks/$id<[0-9]*>	 controllers.Qualifications.removeMark(codeExp : String,id : Long)
+
+GET /expedients/:codeExp/marks	 controllers.Qualifications.getMarks(codeExp : String)
+
+
+# Home page
+GET     /                           controllers.Application.index()
+
+GET		/login						controllers.Application.login()
+
+POST	/login						controllers.Application.authenticate()
+
+GET 	/logout						controllers.Application.logout()						
+
+# Map static resources from the /public folder to the /assets URL path
+GET     /assets/*file               controllers.Assets.versioned(path="/public", file: Asset)
+

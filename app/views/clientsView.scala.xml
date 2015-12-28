@@ -1,0 +1,7 @@
+@(clients: List[Client],count: Integer)
+<clients>
+	<count>@count</count>
+	@for(client <- clients){
+		@clientView(client)
+	}
+</clients>

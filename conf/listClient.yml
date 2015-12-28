@@ -1,0 +1,59 @@
+User(user1):
+	username: user1
+	password: 1234
+	
+User(user2):
+	username: user2
+	password: 4321
+	type:client
+	
+User(user3):
+	username: user3
+	password: 4568
+	type:client
+	
+User(user4):
+	username: user4
+	password: 7788
+	type:client
+	
+User(user5):
+	username: user5
+	password: 6547
+	type:client
+	
+Client(client1):
+	name: Client1
+	nif: 08469460D
+	phone: 654789998
+	city: City1
+	user: [user1]
+
+Client(client2):
+	name: Client2
+	nif: 97574558W
+	phone: 654689998
+	city: City2
+	user: [user2]
+	
+Client(client3):
+	name: Client3
+	nif: 67061590F
+	phone: 954689998
+	city: City3
+	user: [user3]
+	
+Client(client4):
+	name: Client4
+	nif: 54863833R
+	phone: 954682998
+	city: City4
+	user: [user4]
+	
+Client(client5):
+	name: Client5
+	nif: 82352845B
+	phone: 754682998
+	city: City5
+	user: [user5]
+	

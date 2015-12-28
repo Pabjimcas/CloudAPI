@@ -1,0 +1,16 @@
+@(inspector: Inspector,isList : Boolean)
+<inspector>
+	<nif>@inspector.nif</nif>
+	<name>@inspector.name</name>
+	@if(inspector.lastname){<lastname>@inspector.lastname</lastname>}
+	<phone>@inspector.phone</phone>
+	<city>@inspector.city</city>
+	@if(inspector.address){<address>@inspector.address</address>}
+	@if(!isList){
+	<inspectorCode>@inspector.inspectorCode</inspectorCode>
+	<expedients>
+		@for(exp <- inspector.expedientsEval){
+			@expedientView(exp,true)
+		}
+	</expedients>}
+</inspector>
