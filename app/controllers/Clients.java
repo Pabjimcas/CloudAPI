@@ -164,7 +164,7 @@ public class Clients extends Controller{
 		}
 		if(page == null){
 			page = "1";
-		}
+		} 
 
 		List<Client> listClients = Client.page(clients,limit,page);
 		if(listClients.size() == 0){
