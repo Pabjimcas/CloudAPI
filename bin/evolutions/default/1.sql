@@ -4,7 +4,7 @@
 # --- !Ups
 
 create table client (
-  id                            bigint not null,
+  id                            bigint auto_increment not null,
   user_id                       bigint,
   nif                           varchar(255),
   name                          varchar(255),
@@ -13,27 +13,25 @@ create table client (
   city                          varchar(255),
   address                       varchar(255),
   version                       bigint not null,
-  when_created                  timestamp not null,
-  when_updated                  timestamp not null,
+  when_created                  datetime(6) not null,
+  when_updated                  datetime(6) not null,
   constraint uq_client_user_id unique (user_id),
   constraint pk_client primary key (id)
 );
-create sequence client_seq;
 
 create table expedient (
-  id                            bigint not null,
+  id                            bigint auto_increment not null,
   client_exp_id                 bigint,
   code                          varchar(255),
   average_mark                  float,
   version                       bigint not null,
-  when_created                  timestamp not null,
-  when_updated                  timestamp not null,
+  when_created                  datetime(6) not null,
+  when_updated                  datetime(6) not null,
   constraint pk_expedient primary key (id)
 );
-create sequence expedient_seq;
 
 create table inspector (
-  id                            bigint not null,
+  id                            bigint auto_increment not null,
   user_id                       bigint,
   nif                           varchar(255),
   name                          varchar(255),
@@ -43,12 +41,11 @@ create table inspector (
   address                       varchar(255),
   inspector_code                varchar(255),
   version                       bigint not null,
-  when_created                  timestamp not null,
-  when_updated                  timestamp not null,
+  when_created                  datetime(6) not null,
+  when_updated                  datetime(6) not null,
   constraint uq_inspector_user_id unique (user_id),
   constraint pk_inspector primary key (id)
 );
-create sequence inspector_seq;
 
 create table inspector_expedient (
   inspector_id                  bigint not null,
@@ -57,45 +54,42 @@ create table inspector_expedient (
 );
 
 create table plot (
-  id                            bigint not null,
+  id                            bigint auto_increment not null,
   expedient_id                  bigint,
   enclosure                     integer,
   surface                       float,
   product                       varchar(255),
   harvest                       float,
   version                       bigint not null,
-  when_created                  timestamp not null,
-  when_updated                  timestamp not null,
+  when_created                  datetime(6) not null,
+  when_updated                  datetime(6) not null,
   constraint pk_plot primary key (id)
 );
-create sequence plot_seq;
 
 create table qualification (
-  id                            bigint not null,
+  id                            bigint auto_increment not null,
   expedient_id                  bigint,
   mark                          float,
-  mark_date                     timestamp,
+  mark_date                     datetime(6),
   inspector                     varchar(255),
   version                       bigint not null,
-  when_created                  timestamp not null,
-  when_updated                  timestamp not null,
+  when_created                  datetime(6) not null,
+  when_updated                  datetime(6) not null,
   constraint pk_qualification primary key (id)
 );
-create sequence qualification_seq;
 
 create table user (
-  id                            bigint not null,
+  id                            bigint auto_increment not null,
   username                      varchar(255),
   password                      varchar(255),
   authtoken                     varchar(255),
-  token_date                    timestamp,
+  token_date                    datetime(6),
   type                          varchar(255),
   version                       bigint not null,
-  when_created                  timestamp not null,
-  when_updated                  timestamp not null,
+  when_created                  datetime(6) not null,
+  when_updated                  datetime(6) not null,
   constraint pk_user primary key (id)
 );
-create sequence user_seq;
 
 alter table client add constraint fk_client_user_id foreign key (user_id) references user (id) on delete restrict on update restrict;
 
@@ -119,42 +113,36 @@ create index ix_qualification_expedient_id on qualification (expedient_id);
 
 # --- !Downs
 
-alter table client drop constraint if exists fk_client_user_id;
+alter table client drop foreign key fk_client_user_id;
 
-alter table expedient drop constraint if exists fk_expedient_client_exp_id;
-drop index if exists ix_expedient_client_exp_id;
+alter table expedient drop foreign key fk_expedient_client_exp_id;
+drop index ix_expedient_client_exp_id on expedient;
 
-alter table inspector drop constraint if exists fk_inspector_user_id;
+alter table inspector drop foreign key fk_inspector_user_id;
 
-alter table inspector_expedient drop constraint if exists fk_inspector_expedient_inspector;
-drop index if exists ix_inspector_expedient_inspector;
+alter table inspector_expedient drop foreign key fk_inspector_expedient_inspector;
+drop index ix_inspector_expedient_inspector on inspector_expedient;
 
-alter table inspector_expedient drop constraint if exists fk_inspector_expedient_expedient;
-drop index if exists ix_inspector_expedient_expedient;
+alter table inspector_expedient drop foreign key fk_inspector_expedient_expedient;
+drop index ix_inspector_expedient_expedient on inspector_expedient;
 
-alter table plot drop constraint if exists fk_plot_expedient_id;
-drop index if exists ix_plot_expedient_id;
+alter table plot drop foreign key fk_plot_expedient_id;
+drop index ix_plot_expedient_id on plot;
 
-alter table qualification drop constraint if exists fk_qualification_expedient_id;
-drop index if exists ix_qualification_expedient_id;
+alter table qualification drop foreign key fk_qualification_expedient_id;
+drop index ix_qualification_expedient_id on qualification;
 
 drop table if exists client;
-drop sequence if exists client_seq;
 
 drop table if exists expedient;
-drop sequence if exists expedient_seq;
 
 drop table if exists inspector;
-drop sequence if exists inspector_seq;
 
 drop table if exists inspector_expedient;
 
 drop table if exists plot;
-drop sequence if exists plot_seq;
 
 drop table if exists qualification;
-drop sequence if exists qualification_seq;
 
 drop table if exists user;
-drop sequence if exists user_seq;
 
