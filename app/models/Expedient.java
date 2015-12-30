@@ -10,6 +10,7 @@ import java.util.Set;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
+import javax.persistence.Id;
 import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
@@ -19,11 +20,15 @@ import play.data.validation.Constraints.Required;
 import validators.CodExp;
 
 import com.avaje.ebean.ExpressionList;
+import com.avaje.ebean.Model;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 @Entity
-public class Expedient extends BaseModel{
+public class Expedient extends Model{
+	
+	@Id
+	public Long id;
 	
 	@JsonIgnore
 	@ManyToOne

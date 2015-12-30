@@ -3,6 +3,7 @@ package models;
 import java.util.Map;
 
 import javax.persistence.Entity;
+import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 
 
@@ -10,7 +11,10 @@ import javax.persistence.ManyToOne;
 
 
 
+
+
 import com.avaje.ebean.ExpressionList;
+import com.avaje.ebean.Model;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import play.data.validation.Constraints.Min;
@@ -18,7 +22,10 @@ import play.data.validation.Constraints.Required;
 import validators.Noum;
 
 @Entity
-public class Plot extends BaseModel{
+public class Plot extends Model{
+	
+	@Id
+	public Long id;
 
 	@JsonIgnore
 	@ManyToOne

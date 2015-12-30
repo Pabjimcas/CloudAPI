@@ -12,8 +12,9 @@ import play.data.Form;
 public class Application extends Controller {
 
     public Result index() {
-    	Form<User> userForm = Form.form(User.class);
-    	return ok(views.html.login.render(userForm));
+    	/*Form<User> userForm = Form.form(User.class);
+    	return ok(views.html.login.render(userForm));*/
+    	return ok("Puta ierda");
     }
     
     @Security.Authenticated(Authenticator.class)

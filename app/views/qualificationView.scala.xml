@@ -1,6 +1,5 @@
 @(qualification: Qualification)
 <qualification id="@qualification.id">
 	<mark>@qualification.mark</mark>
-	<markDate>@qualification.markDate</markDate>
 	<inspector>@qualification.inspector</inspector>
 </qualification>

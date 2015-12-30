@@ -12,9 +12,6 @@ create table client (
   phone                         varchar(255),
   city                          varchar(255),
   address                       varchar(255),
-  version                       bigint not null,
-  when_created                  datetime(6) not null,
-  when_updated                  datetime(6) not null,
   constraint uq_client_user_id unique (user_id),
   constraint pk_client primary key (id)
 );
@@ -24,9 +21,6 @@ create table expedient (
   client_exp_id                 bigint,
   code                          varchar(255),
   average_mark                  float,
-  version                       bigint not null,
-  when_created                  datetime(6) not null,
-  when_updated                  datetime(6) not null,
   constraint pk_expedient primary key (id)
 );
 
@@ -40,9 +34,6 @@ create table inspector (
   city                          varchar(255),
   address                       varchar(255),
   inspector_code                varchar(255),
-  version                       bigint not null,
-  when_created                  datetime(6) not null,
-  when_updated                  datetime(6) not null,
   constraint uq_inspector_user_id unique (user_id),
   constraint pk_inspector primary key (id)
 );
@@ -60,9 +51,6 @@ create table plot (
   surface                       float,
   product                       varchar(255),
   harvest                       float,
-  version                       bigint not null,
-  when_created                  datetime(6) not null,
-  when_updated                  datetime(6) not null,
   constraint pk_plot primary key (id)
 );
 
@@ -70,11 +58,7 @@ create table qualification (
   id                            bigint auto_increment not null,
   expedient_id                  bigint,
   mark                          float,
-  mark_date                     datetime(6),
   inspector                     varchar(255),
-  version                       bigint not null,
-  when_created                  datetime(6) not null,
-  when_updated                  datetime(6) not null,
   constraint pk_qualification primary key (id)
 );
 
@@ -83,11 +67,7 @@ create table user (
   username                      varchar(255),
   password                      varchar(255),
   authtoken                     varchar(255),
-  token_date                    datetime(6),
   type                          varchar(255),
-  version                       bigint not null,
-  when_created                  datetime(6) not null,
-  when_updated                  datetime(6) not null,
   constraint pk_user primary key (id)
 );
 

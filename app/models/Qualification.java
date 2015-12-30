@@ -6,6 +6,7 @@ import java.util.Date;
 import java.util.Map;
 
 import javax.persistence.Entity;
+import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 
 import play.data.format.Formats;
@@ -13,10 +14,14 @@ import play.data.validation.Constraints.Min;
 import play.data.validation.Constraints.Required;
 
 import com.avaje.ebean.ExpressionList;
+import com.avaje.ebean.Model;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity
-public class Qualification extends BaseModel{
+public class Qualification extends Model{
+	
+	@Id
+	public Long id;
 	
 	@JsonIgnore
 	@ManyToOne
@@ -26,8 +31,8 @@ public class Qualification extends BaseModel{
 	@Min(0)
 	public Float mark;
 	
-	@Formats.DateTime(pattern="yyyy-MM-dd")
-	public Date markDate;
+	/*@Formats.DateTime(pattern="yyyy-MM-dd")
+	public Date markDate;*/
 	
 	public String inspector;
 	
@@ -36,7 +41,7 @@ public class Qualification extends BaseModel{
 	public void initialization(Expedient expedient,Inspector inspector){
 		expedient.addInspector(inspector);
 		expedient.update();
-		this.markDate = new Date();
+		//this.markDate = new Date();
 		this.inspector = inspector.inspectorCode;
 		this.expedient = expedient;
 		
@@ -46,7 +51,7 @@ public class Qualification extends BaseModel{
 		Boolean res = false;
 		if(!data.mark.equals(this.mark)){
 			this.mark = data.mark;
-			this.markDate = new Date();
+			//this.markDate = new Date();
 			res = true;
 		}
 		return res;
@@ -55,7 +60,7 @@ public class Qualification extends BaseModel{
 public static ExpressionList<Qualification> findBy(Long idEx,Map<String,String> filters){
 		
 		ExpressionList<Qualification> res = Qualification.find.where().eq("expedient.id",idEx);
-		SimpleDateFormat f = new SimpleDateFormat("yyyy-MM-dd");
+		/*SimpleDateFormat f = new SimpleDateFormat("yyyy-MM-dd");
 
 		for (String key : filters.keySet()){
 			Date date = new Date();
@@ -79,7 +84,7 @@ public static ExpressionList<Qualification> findBy(Long idEx,Map<String,String> 
 			default:
 				res = res.eq(key, filters.get(key));
 			}
-		}
+		}*/
 		return res;
 	}
 

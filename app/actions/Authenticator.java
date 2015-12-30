@@ -18,16 +18,16 @@ public class Authenticator extends Security.Authenticator{
         if (token != null) {
             User user = User.find.where().eq("authToken", token).findUnique();
             if (user != null) {
-            	Date tokenDate = user.tokenDate;
+            	/*Date tokenDate = user.tokenDate;
                 Date now = new Date();
                 Long res = now.getTime() - tokenDate.getTime();
                 if(res >= 86400000){
                 	user.logout();
                 	user.update();
-                }else{ 
+                }else{ */
 	            	ctx.args.put("userLogged", user);
 	                return user.username;
-                }
+                //}
             }
         }
         return null;

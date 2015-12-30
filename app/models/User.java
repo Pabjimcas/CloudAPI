@@ -5,14 +5,19 @@ import java.security.SecureRandom;
 import java.util.Date;
 
 import javax.persistence.Entity;
+import javax.persistence.Id;
 
 import play.data.validation.Constraints.MinLength;
 import play.data.validation.Constraints.Required;
 
+import com.avaje.ebean.Model;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity
-public class User extends BaseModel{
+public class User extends Model{
+	
+	@Id
+	public Long id;
 	
 	@Required
 	@MinLength(4)
@@ -23,8 +28,8 @@ public class User extends BaseModel{
 	
 	public String authtoken;
 	
-	@JsonIgnore
-	public Date tokenDate;
+	/*@JsonIgnore
+	public Date tokenDate;*/
 	
 	@JsonIgnore
 	public String type;
@@ -54,7 +59,7 @@ public class User extends BaseModel{
 			token = tokenCalculate();
 		}
 		this.authtoken = token;
-		this.tokenDate = new Date();
+		/*this.tokenDate = new Date();*/
 	}
 	
 	public static User findByUsername(String username){
